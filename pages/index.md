@@ -2,14 +2,15 @@
 title: Welcome to Evidence
 ---
 
+## Verified New Housing Units Permitted
 
-```sql permit_count
+```sql new_construction_housing_sum
 
-select issued_month_last_day_date, row_count as total_permits_issued from monthly_permit_count order by 1
+select address_first_permit_issued_month_end as month_end, sum(housing_unit_qty) as housing_unit_sum from verified_new_construction group by 1 order by 1
 
 ```
 
-<BarChart data={permit_count} y=total_permits_issued x=issued_month_last_day_date/>
+<LineChart data={new_construction_housing_sum} y=housing_unit_sum x=month_end xAxisTitle="Month End"/>
 
 
 
